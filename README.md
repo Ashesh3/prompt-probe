@@ -1,5 +1,9 @@
 # Prompt Probe
 
+<img width="1909" height="942" alt="image" src="https://github.com/user-attachments/assets/3efe3ef8-3131-4126-aaf4-05b01c41baac" />
+<img width="1901" height="953" alt="image" src="https://github.com/user-attachments/assets/abebcf68-33dc-4b4c-922e-a2ac85c87dd4" />
+
+
 Prompt Probe is a Next.js developer console for testing system prompts against
 multiple LLM models and tracking content-filter behavior across prompt
 revisions. It is a dense, dark-mode debugging tool — not a landing page — built
