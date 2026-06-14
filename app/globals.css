@@ -1,26 +1,342 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Prompt Probe design system.
+  Tokens ported 1:1 from the Pencil design (UI_design).
+  Dark is the primary theme; light is a faithful secondary.
+*/
 
 @theme inline {
+  /* shadcn semantic surface mapping */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Prompt Probe surfaces */
+  --color-panel: var(--panel);
+  --color-inset: var(--inset);
+  --color-elevated: var(--elevated);
+  --color-hover: var(--hover);
+  --color-strong: var(--border-strong);
+  --color-faint: var(--faint);
+
+  /* Brand accents */
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-cyan: var(--cyan);
+  --color-pink: var(--pink);
+
+  /* Status */
+  --color-pass: var(--pass);
+  --color-pass-bg: var(--pass-bg);
+  --color-filter: var(--filter);
+  --color-filter-bg: var(--filter-bg);
+  --color-refusal: var(--refusal);
+  --color-refusal-bg: var(--refusal-bg);
+  --color-running: var(--running);
+  --color-running-bg: var(--running-bg);
+  --color-notrun: var(--notrun);
+  --color-notrun-bg: var(--notrun-bg);
+
+  /* Diff */
+  --color-diff-add: var(--diff-add);
+  --color-diff-add-bg: var(--diff-add-bg);
+  --color-diff-remove: var(--diff-remove);
+  --color-diff-remove-bg: var(--diff-remove-bg);
+
+  /* Risk categories */
+  --color-risk-policy: var(--risk-policy);
+  --color-risk-instruction: var(--risk-instruction);
+  --color-risk-tool: var(--risk-tool);
+  --color-risk-override: var(--risk-override);
+  --color-risk-role: var(--risk-role);
+
+  /* Code surface (theme-aware) */
+  --color-code-bg: var(--code-bg);
+  --color-code-gutter: var(--code-gutter);
+  --color-code-active: var(--code-active);
+  --color-code-linenum: var(--code-linenum);
+  --color-code-text: var(--code-text);
+  --color-code-comment: var(--code-comment);
+  --color-code-keyword: var(--code-keyword);
+  --color-code-string: var(--code-string);
+  --color-code-number: var(--code-number);
+  --color-code-section: var(--code-section);
+  --color-code-risk: var(--code-risk);
+  --color-code-risk-bg: var(--code-risk-bg);
+
+  /* Fonts */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-funnel), var(--font-inter), sans-serif;
+  --font-caption: var(--font-geist), var(--font-inter), sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  /* Radii (exact from design) */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ---------- Light theme (secondary) ---------- */
+:root {
+  --background: #edf0f5;
+  --foreground: #131922;
+  --card: #ffffff;
+  --card-foreground: #131922;
+  --popover: #ffffff;
+  --popover-foreground: #131922;
+  --primary: #a855f7;
+  --primary-foreground: #ffffff;
+  --secondary: #f6f8fb;
+  --secondary-foreground: #586173;
+  --muted: #f0f3f8;
+  --muted-foreground: #586173;
+  --accent: #e8edf4;
+  --accent-foreground: #131922;
+  --destructive: #dc2626;
+  --border: #e3e8ef;
+  --input: #e3e8ef;
+  --ring: #a855f7;
+  --radius: 0.5rem;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #131922;
+  --sidebar-primary: #a855f7;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e8edf4;
+  --sidebar-accent-foreground: #131922;
+  --sidebar-border: #e3e8ef;
+  --sidebar-ring: #a855f7;
+
+  --panel: #ffffff;
+  --inset: #f0f3f8;
+  --elevated: #f6f8fb;
+  --hover: #e8edf4;
+  --border-strong: #ccd4df;
+  --faint: #8a93a3;
+
+  --brand: #a855f7;
+  --brand-foreground: #ffffff;
+  --brand-2: #0891b2;
+  --cyan: #0891b2;
+  --pink: #db2777;
+
+  --pass: #15803d;
+  --pass-bg: #e5f7ec;
+  --filter: #dc2626;
+  --filter-bg: #fbe3e6;
+  --refusal: #b45309;
+  --refusal-bg: #fbf0dd;
+  --running: #1d4ed8;
+  --running-bg: #e3ecfd;
+  --notrun: #8a93a3;
+  --notrun-bg: #edf0f5;
+
+  --diff-add: #15803d;
+  --diff-add-bg: #e5f7ec;
+  --diff-remove: #dc2626;
+  --diff-remove-bg: #fbe3e6;
+
+  --risk-policy: #dc2626;
+  --risk-instruction: #b45309;
+  --risk-tool: #0891b2;
+  --risk-override: #c026d3;
+  --risk-role: #1d4ed8;
+
+  --code-bg: #ffffff;
+  --code-gutter: #f6f8fb;
+  --code-active: #eef3fb;
+  --code-linenum: #b9c2cf;
+  --code-text: #1f2733;
+  --code-comment: #8a94a6;
+  --code-keyword: #0550ae;
+  --code-string: #0a7d33;
+  --code-number: #b45309;
+  --code-section: #0369a1;
+  --code-risk: #dc2626;
+  --code-risk-bg: #fde7ea;
+}
+
+/* ---------- Dark theme (primary) — GitHub dark ---------- */
+.dark {
+  --background: #010409;
+  --foreground: #e6edf3;
+  --card: #0d1117;
+  --card-foreground: #e6edf3;
+  --popover: #161b22;
+  --popover-foreground: #e6edf3;
+  --primary: #238636;
+  --primary-foreground: #ffffff;
+  --secondary: #21262d;
+  --secondary-foreground: #9198a1;
+  --muted: #161b22;
+  --muted-foreground: #9198a1;
+  --accent: #21262d;
+  --accent-foreground: #e6edf3;
+  --destructive: #f85149;
+  --border: #30363d;
+  --input: #30363d;
+  --ring: #2ea043;
+
+  --sidebar: #0d1117;
+  --sidebar-foreground: #e6edf3;
+  --sidebar-primary: #238636;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #21262d;
+  --sidebar-accent-foreground: #e6edf3;
+  --sidebar-border: #30363d;
+  --sidebar-ring: #2ea043;
+
+  --panel: #0d1117;
+  --inset: #010409;
+  --elevated: #161b22;
+  --hover: #21262d;
+  --border-strong: #3d444d;
+  --faint: #6e7681;
+
+  --brand: #2ea043;
+  --brand-foreground: #ffffff;
+  --brand-2: #3fb950;
+  --cyan: #3fb950;
+  --pink: #db61a2;
+
+  --pass: #3fb950;
+  --pass-bg: #102a18;
+  --filter: #f85149;
+  --filter-bg: #3a1518;
+  --refusal: #e3b341;
+  --refusal-bg: #312610;
+  --running: #58a6ff;
+  --running-bg: #0d233f;
+  --notrun: #6e7681;
+  --notrun-bg: #21262d;
+
+  --diff-add: #3fb950;
+  --diff-add-bg: #102a18;
+  --diff-remove: #f85149;
+  --diff-remove-bg: #3a1518;
+
+  --risk-policy: #f85149;
+  --risk-instruction: #e3b341;
+  --risk-tool: #58a6ff;
+  --risk-override: #db61a2;
+  --risk-role: #ffa657;
+
+  --code-bg: #0d1117;
+  --code-gutter: #0d1117;
+  --code-active: #161b22;
+  --code-linenum: #6e7681;
+  --code-text: #e6edf3;
+  --code-comment: #8b949e;
+  --code-keyword: #ff7b72;
+  --code-string: #a5d6ff;
+  --code-number: #79c0ff;
+  --code-section: #ff7b72;
+  --code-risk: #f85149;
+  --code-risk-bg: #3a1518;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  html {
+    @apply font-sans;
+  }
+  /* Dense scrollbars suited to a dev console */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--faint);
+    background-clip: padding-box;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  /* Section caption label used throughout the sidebar/panels */
+  .caption-label {
+    font-family: var(--font-caption);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .mono {
+    font-family: var(--font-mono);
+  }
+  .brand-gradient {
+    background-image: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ---------- Monaco editor risk decorations ---------- */
+.pp-risk-line {
+  background: var(--code-risk-bg) !important;
+}
+.pp-risk-phrase {
+  color: var(--code-risk) !important;
+  text-decoration: underline wavy var(--code-risk);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.pp-risk-glyph {
+  background: var(--code-risk);
+  width: 3px !important;
+  margin-left: 4px;
+}
+.monaco-editor,
+.monaco-editor .overflow-guard {
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+.monaco-editor .scrollbar .slider {
+  border-radius: 999px;
 }

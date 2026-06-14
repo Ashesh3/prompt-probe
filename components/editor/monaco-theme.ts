@@ -1,0 +1,93 @@
+import type { Monaco } from "@monaco-editor/react";
+
+export const PP_DARK = "promptprobe-dark";
+export const PP_LIGHT = "promptprobe-light";
+
+/** Custom Monaco themes matching the Prompt Probe code surface tokens. */
+export function definePromptProbeThemes(monaco: Monaco): void {
+  monaco.editor.defineTheme(PP_DARK, {
+    base: "vs-dark",
+    inherit: true,
+    rules: [
+      { token: "", foreground: "e6edf3" },
+      { token: "keyword", foreground: "ff7b72" },
+      { token: "string", foreground: "a5d6ff" },
+      { token: "number", foreground: "79c0ff" },
+      { token: "comment", foreground: "8b949e", fontStyle: "italic" },
+      { token: "keyword.md", foreground: "ff7b72", fontStyle: "bold" },
+      { token: "metatag.html", foreground: "ff7b72" },
+      { token: "string.link.md", foreground: "79c0ff" },
+      { token: "variable.md", foreground: "ff7b72" },
+      { token: "strong.md", foreground: "e6edf3", fontStyle: "bold" },
+      { token: "emphasis.md", foreground: "e6edf3", fontStyle: "italic" },
+    ],
+    colors: {
+      "editor.background": "#0d1117",
+      "editor.foreground": "#e6edf3",
+      "editorLineNumber.foreground": "#6e7681",
+      "editorLineNumber.activeForeground": "#b1bac4",
+      "editor.lineHighlightBackground": "#161b22",
+      "editor.lineHighlightBorder": "#00000000",
+      "editorCursor.foreground": "#2ea043",
+      "editor.selectionBackground": "#2ea04340",
+      "editor.inactiveSelectionBackground": "#2ea04326",
+      "editor.findMatchBackground": "#e3b34177",
+      "editor.findMatchHighlightBackground": "#e3b34133",
+      "editorGutter.background": "#0d1117",
+      "editorIndentGuide.background1": "#21262d",
+      "editorIndentGuide.activeBackground1": "#3d444d",
+      "minimap.background": "#0d1117",
+      "editorWidget.background": "#161b22",
+      "editorWidget.border": "#30363d",
+      "editorSuggestWidget.background": "#161b22",
+      "input.background": "#010409",
+      "input.border": "#30363d",
+      "scrollbarSlider.background": "#484f5888",
+      "scrollbarSlider.hoverBackground": "#6e7681aa",
+      "scrollbarSlider.activeBackground": "#6e7681",
+    },
+  });
+
+  monaco.editor.defineTheme(PP_LIGHT, {
+    base: "vs",
+    inherit: true,
+    rules: [
+      { token: "", foreground: "1f2733" },
+      { token: "keyword", foreground: "0550ae" },
+      { token: "string", foreground: "0a7d33" },
+      { token: "number", foreground: "b45309" },
+      { token: "comment", foreground: "8a94a6", fontStyle: "italic" },
+      { token: "keyword.md", foreground: "0369a1", fontStyle: "bold" },
+      { token: "metatag.html", foreground: "0369a1" },
+      { token: "string.link.md", foreground: "0891b2" },
+      { token: "variable.md", foreground: "0369a1" },
+      { token: "strong.md", foreground: "131922", fontStyle: "bold" },
+      { token: "emphasis.md", foreground: "1f2733", fontStyle: "italic" },
+    ],
+    colors: {
+      "editor.background": "#ffffff",
+      "editor.foreground": "#1f2733",
+      "editorLineNumber.foreground": "#b9c2cf",
+      "editorLineNumber.activeForeground": "#586173",
+      "editor.lineHighlightBackground": "#eef3fb",
+      "editor.lineHighlightBorder": "#00000000",
+      "editorCursor.foreground": "#0891b2",
+      "editor.selectionBackground": "#0891b233",
+      "editor.inactiveSelectionBackground": "#0891b21f",
+      "editor.findMatchBackground": "#0891b244",
+      "editor.findMatchHighlightBackground": "#0891b222",
+      "editorGutter.background": "#f6f8fb",
+      "editorIndentGuide.background1": "#e3e8ef",
+      "editorIndentGuide.activeBackground1": "#ccd4df",
+      "minimap.background": "#f6f8fb",
+      "editorWidget.background": "#ffffff",
+      "editorWidget.border": "#e3e8ef",
+      "editorSuggestWidget.background": "#ffffff",
+      "input.background": "#f0f3f8",
+      "input.border": "#e3e8ef",
+      "scrollbarSlider.background": "#ccd4df88",
+      "scrollbarSlider.hoverBackground": "#8a93a3aa",
+      "scrollbarSlider.activeBackground": "#8a93a3",
+    },
+  });
+}

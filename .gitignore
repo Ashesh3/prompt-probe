@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local SQLite database
+prompt-probe.db
+prompt-probe.db-*
+*.db-journal
+*.db-wal
+*.db-shm
